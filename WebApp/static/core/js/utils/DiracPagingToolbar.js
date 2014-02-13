@@ -46,9 +46,9 @@ Ext.define('Ext.dirac.utils.DiracPagingToolbar',{
   items : [],
   emptyMsg : "No topics to display",
   prependButtons : true,
-  layout : {
+  /*layout : {
     overflowHandler : 'Scroller'
-  },
+  },*/
   /***
    * @cfg{List} pagingToolbarItems
    * It contains the tool bar items such as buttons, size combo, etc.

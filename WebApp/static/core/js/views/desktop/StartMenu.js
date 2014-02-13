@@ -132,7 +132,7 @@ Ext.define('Ext.dirac.views.desktop.StartMenu', {
 
 	/**
 	 * This method is used to recursively read the data about the start menu
-	 * 
+	 *
 	 * @return {Object}
 	 */
 	getMenuStructureRec : function(item) {

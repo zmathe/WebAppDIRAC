@@ -10,15 +10,14 @@ Ext.define('Ext.dirac.core.CommonFunctions', {
 
   getFieldValueFromSelectedRow : function(oGrid, oFieldName) {
 
+  	var oVal = "";
     if(oGrid){
-      var oVal = "";
       var oSelectedRecords = oGrid.getSelectionModel().getSelection();
 
       if (oSelectedRecords.length > 0)
         oVal = oSelectedRecords[0].get(oFieldName);
-
-      return oVal;
     }
+    return oVal;
 
   },
 

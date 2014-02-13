@@ -161,8 +161,8 @@ Ext.define('Ext.dirac.views.tabs.RightContainer', {
             });
         if (bFoundNotLoadedapps) {
           // We may have applications which are not opened. We have to save the
-          // status
-          // of this applications as well. These application states is retrieved
+          // status of this applications as well. These application states is
+          // retrieved
           // from the SM.
           var desktopName = activetab.title;
           if (desktopName && GLOBAL.APP.SM.isStateLoaded("application", "desktop", desktopName)) {
@@ -274,20 +274,13 @@ Ext.define('Ext.dirac.views.tabs.RightContainer', {
     if (activeTab == null && oTab == null) {
       me.createDesktopTab('Default');
       activeTab = me.getApplicationContainer().getActiveTab(); // we
-      // need
-      // to
-      // get
-      // the
-      // new
-      // active
-      // tab
+      // need to get the new active tab
     } else if (oTab != null) {
       activeTab = oTab;
     }
     if (activeTab.view == 'presenterView') {
       tab.activeTab = activeTab; // this needs to stop the loading
-      // message. The event handled in the
-      // Panel class.
+      // message. The event handled in the Panel class.
       Ext.apply(tab, {
             tools : [{
                   type : 'maximize',
@@ -298,8 +291,7 @@ Ext.define('Ext.dirac.views.tabs.RightContainer', {
                     activeTab.hideComponents(); // hides all
                     // components!
                     me.show(); // only show the current component
-                    // we need to hide the maximize and also the
-                    // close buttons!!
+                    // we need to hide the maximize and also the close buttons!!
                     for (var i = 0; i < me.tools.length; i++) {
                       if (me.tools[i].type == 'maximize' || me.tools[i].type == 'close') {
                         me.tools[i].hide();
@@ -386,8 +378,7 @@ Ext.define('Ext.dirac.views.tabs.RightContainer', {
       tab.loadData();
     } else {
       tab.activeTab = activeTab; // this needs to stop the loading
-      // message. The event handled in the
-      // Panel class.
+      // message. The event handled in the Panel class.
       activeTab.add(tab);
     }
     if (cbFunction) {
@@ -589,10 +580,7 @@ Ext.define('Ext.dirac.views.tabs.RightContainer', {
           GLOBAL.APP.MAIN_VIEW.currentState = sStateName;
           GLOBAL.APP.SM.oprAddActiveState(sAppName, sStateName);// OK
           GLOBAL.APP.MAIN_VIEW._state_related_url.push(sStateName); // it is
-          // required
-          // for
-          // refreshing
-          // the url.
+          // required for refreshing the url.
 
           GLOBAL.APP.MAIN_VIEW.refreshUrlDesktopState();
           GLOBAL.APP.MAIN_VIEW.renameCurrentDesktop(sStateName, true);
@@ -618,12 +606,7 @@ Ext.define('Ext.dirac.views.tabs.RightContainer', {
 
       GLOBAL.APP.MAIN_VIEW.deleteStateFromMenu(sStateName);
       Ext.Array.remove(GLOBAL.APP.MAIN_VIEW._state_related_url, sStateName); // it
-      // is
-      // required
-      // for
-      // refreshing
-      // the
-      // url.
+      // is required for refreshing the url.
 
       GLOBAL.APP.MAIN_VIEW.refreshUrlDesktopState();
 
