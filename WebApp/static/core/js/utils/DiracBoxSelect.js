@@ -365,7 +365,7 @@ Ext.define('Ext.dirac.utils.DiracBoxSelect', {
         var me = this;
 
         var oSelectionModel = me.getPicker().getSelectionModel();
-        var oStore = me.getStore();
+        var oStore = oSelectionModel.getStore(); //we have to original store
         var oCount = oStore.getCount();
         var oInverseValues = [];
 
