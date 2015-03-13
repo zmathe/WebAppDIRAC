@@ -363,7 +363,7 @@ Ext.define('Ext.dirac.utils.DiracBoxSelect', {
           s = sSeparator;
 
         var me = this;
-
+        this.doQuery("", false, true);
         var oSelectionModel = me.getPicker().getSelectionModel();
         var oStore = oSelectionModel.getStore(); //we have to original store
         var oCount = oStore.getCount();
