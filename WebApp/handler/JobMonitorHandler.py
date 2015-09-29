@@ -18,8 +18,10 @@ class JobMonitorHandler( WebHandler ):
     RPC = RPCClient( "WorkloadManagement/JobMonitoring", timeout = 600 )
     req = self._request()
 
+    gLogger.debug( "Request", req )
+    
     result = yield self.threadTask( RPC.getJobPageSummaryWeb, req, self.globalSort , self.pageNumber, self.numberOfJobs )
-
+    print result
     if not result["OK"]:
       self.finish( {"success":"false", "result":[], "total":0, "error":result["Message"]} )
       return
