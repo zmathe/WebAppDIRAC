@@ -101,7 +101,7 @@
             GLOBAL.APP = new Ext.dirac.core.App();
             setTimeout(function(){
               Ext.get("app-dirac-loading").hide();
-              Ext.get("app-dirac-loading-msg").setHTML("Loading module. Please wait ...");
+              Ext.get("app-dirac-loading-msg").setHtml("Loading module. Please wait ...");
             },1000);
           });
       {% else %}
@@ -132,7 +132,7 @@
               GLOBAL.APP = new Ext.dirac.core.App();
               setTimeout(function(){
                 Ext.get("app-dirac-loading").hide();
-                Ext.get("app-dirac-loading-msg").setHTML("Loading module. Please wait ...");
+                Ext.get("app-dirac-loading-msg").setHtml("Loading module. Please wait ...");
               },1000);
           });
       {% end %}
