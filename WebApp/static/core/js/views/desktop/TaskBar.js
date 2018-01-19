@@ -28,7 +28,13 @@ Ext.define('Ext.dirac.views.desktop.TaskBar', {
 
         }
 
-        me.startMenu = new Ext.dirac.views.desktop.StartMenu();
+        var cfg = {
+          app : me,
+          menu : ['-'] //add a menu separator
+        };
+
+        me.startMenu = new Ext.dirac.views.desktop.StartMenu(cfg);
+        
 
         me.windowBar = new Ext.toolbar.Toolbar(me.getWindowBarConfig());
 
@@ -228,6 +234,7 @@ Ext.define('Ext.dirac.views.desktop.TaskBar', {
         var me = this;
         me.callParent();
         me.windowBar.el.on('contextmenu', me.onButtonContextMenu, me);
+        //me.startMenu.createMenu();
       },
 
       /**
