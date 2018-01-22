@@ -9,10 +9,18 @@
     <script type="text/javascript" src="{{base_url}}/static/core/js/utils/canvg-1.3/rgbcolor.js"></script>
 	  <script type="text/javascript" src="{{base_url}}/static/core/js/utils/canvg-1.3/StackBlur.js"></script>
 	  <script type="text/javascript" src="{{base_url}}/static/core/js/utils/canvg-1.3/canvg.js"></script>
+<<<<<<< HEAD
 	  <script type="text/javascript" src="{{base_url}}/static/core/js/utils/FileSaver/FileSaver.js"></script>
 	  
 	<link rel="stylesheet" type="text/css" href="{{base_url}}/static/extjs/{{ext_version}}/resources/css/{{theme}}.css" />
     <link rel="stylesheet" type="text/css" href="{{base_url}}/static/extjs/resources/css/{{theme}}.css" />
+=======
+	  <script type="text/javascript" src="https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{base_url}}/static/extjs/{{ext_version}}/build/classic/theme-{{theme}}/resources/theme-{{theme}}-all.css" />
+    <link rel="stylesheet" type="text/css" href="{{base_url}}/static/extjs/build/classic/theme-{{theme}}/resources/theme-{{theme}}-all.css" />
+
+>>>>>>> fix conflicts
     <link rel="stylesheet" type="text/css" href="{{base_url}}/static/core/css/css.css" />
     <link rel="stylesheet" type="text/css" href="{{base_url}}/static/core/css/iconset.css" />
     <link rel="stylesheet" type="text/css" href="{{base_url}}/static/core/css/TabScrollerMenu.css" />
@@ -26,10 +34,12 @@
 
     {% if _dev %}
        {% if debug_level=='debug' %}
-       	  <script type="text/javascript" src="{{base_url}}/static/extjs/{{ext_version}}/ext-all-dev.js"></script>
-          <script type="text/javascript" src="{{base_url}}/static/extjs/ext-all-dev.js"></script>
+          <script type="text/javascript" src="{{base_url}}/static/extjs/{{ext_version}}/build/ext-all-debug.js"></script>
+          <script type="text/javascript" src="{{base_url}}/static/extjs/build/ext-all-debug.js"></script>
        {% else %}
-         <script type="text/javascript" src="{{base_url}}/static/extjs/ext-all.js"></script>
+         <script type="text/javascript" src="{{base_url}}/static/extjs/{{ext_version}}/build/ext-all.js"></script>
+         <script type="text/javascript" src="{{base_url}}/static/extjs/build/ext-all.js"></script>
+
        {% end %}
     {% else %}
       <script type="text/javascript" src="{{base_url}}/static/core/build/all-classes.js"></script>
@@ -57,8 +67,8 @@
             'Ext.dirac.core': '{{base_url}}/static/core/js/core',
             'Ext.dirac.views': '{{base_url}}/static/core/js/views',
             'Ext.dirac.utils': '{{base_url}}/static/core/js/utils',
-            'Ext.ux.form':'{{base_url}}/static/extjs/{{ext_version}}/examples/ux/form',
-            'Ext.ux':'{{base_url}}/static/extjs/{{ext_version}}/examples/ux'
+            'Ext.ux.form':'{{base_url}}/static/extjs/{{ext_version}}/packages/ux/classic/src/form',
+            'Ext.ux':'{{base_url}}/static/extjs/{{ext_version}}/packages/ux/classic/src'
           });
 
           Ext.require(['Ext.dirac.core.App','Ext.*']);
