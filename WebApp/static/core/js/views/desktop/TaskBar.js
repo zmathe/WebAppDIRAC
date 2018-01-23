@@ -46,7 +46,7 @@ Ext.define('Ext.dirac.views.desktop.TaskBar', {
               text : me.startBtnText
             }, me.windowBar];
 
-        var sButtonThemeText = "Gray";
+        var sButtonThemeText = "Crisp";
 
         if (GLOBAL.WEB_THEME == "neptune")
           sButtonThemeText = "Neptune";
@@ -57,8 +57,8 @@ Ext.define('Ext.dirac.views.desktop.TaskBar', {
         if (GLOBAL.WEB_THEME == "triton")
           sButtonThemeText = "Triton";
 
-        if (GLOBAL.WEB_THEME == "crisp")
-          sButtonThemeText = "Crisp";
+        if (GLOBAL.WEB_THEME == "gray")
+          sButtonThemeText = "Gray";
 
         var button_theme = {
           "text" : sButtonThemeText,
