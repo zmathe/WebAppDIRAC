@@ -845,7 +845,7 @@ Ext.define('DIRAC.JobMonitor.classes.JobMonitor', {
               fixed : true,
               menuDisabled : true
             },
-            "renderer" : me.renderStatus
+            "renderFunction" : "renderStatusForGivenColor"
           },
           "Key" : {
             "dataIndex" : "key",
@@ -1444,15 +1444,6 @@ Ext.define('DIRAC.JobMonitor.classes.JobMonitor', {
                 GLOBAL.APP.CF.showAjaxErrorMessage(response);
               }
             });
-
-      },
-      renderStatus : function(value, metadata, record) {
-
-        for (var i = 0; i < this.getStore().getData().getCount(); i++) {
-          if (this.getStore().getData().getAt(i).data.key == value) {
-            return '<div style="background-color:' + this.getStore().getData().getAt(i).data.color + ';width:50px;padding:10px;">';
-          }
-        }
 
       }
 
