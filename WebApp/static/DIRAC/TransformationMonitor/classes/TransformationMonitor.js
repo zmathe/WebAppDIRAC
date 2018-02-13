@@ -753,6 +753,11 @@ Ext.define('DIRAC.TransformationMonitor.classes.TransformationMonitor', {
                               dataIndex : 'precentage'
                             }], menu);
                   } else if (oDataKind == 'fileProcessed') {
+                    var menu = [{
+                          text : 'Show Files',
+                          handler : me.__showFileStatus,
+                          arguments : [me, "Processed"]
+                        }];
                     me.getContainer().oprPrepareAndShowWindowGrid(jsonData["result"], "Production:" + oId, ["retries", "count", "precentage"], [{
                               text : 'Retries',
                               flex : 1,
@@ -768,8 +773,13 @@ Ext.define('DIRAC.TransformationMonitor.classes.TransformationMonitor', {
                               flex : 1,
                               sortable : false,
                               dataIndex : 'precentage'
-                            }]);
+                            }], menu);
                   } else if (oDataKind == 'fileNotProcessed') {
+                    var menu = [{
+                          text : 'Show Files',
+                          handler : me.__showFileStatus,
+                          arguments : [me, "NotProcessed"]
+                        }];
                     me.getContainer().oprPrepareAndShowWindowGrid(jsonData["result"], "Production:" + oId, ["retries", "count", "precentage"], [{
                               text : 'Retries',
                               flex : 1,
@@ -785,7 +795,7 @@ Ext.define('DIRAC.TransformationMonitor.classes.TransformationMonitor', {
                               flex : 1,
                               sortable : false,
                               dataIndex : 'precentage'
-                            }]);
+                            }], menu);
                   } else if (oDataKind == 'fileAllProcessed') {
                     me.getContainer().oprPrepareAndShowWindowGrid(jsonData["result"], "Production:" + oId, ["retries", "count", "precentage"], [{
                               text : 'Retries',
@@ -869,10 +879,13 @@ Ext.define('DIRAC.TransformationMonitor.classes.TransformationMonitor', {
               }
             });
       },
-      __showFileStatus : function(parent) {
+      __showFileStatus : function(parent, status) {
         var me = this;
         oId = GLOBAL.APP.CF.getFieldValueFromSelectedRow(parent.grid, "TransformationID");
         var oStatus = GLOBAL.APP.CF.getFieldValueFromSelectedRow(me, "status");
+        if (!oStatus) {
+          oStatus = status;
+        }
         parent.grid.body.mask("Wait ...");
 
         var url = GLOBAL.BASE_URL + 'TransformationMonitor/showFileStatus';
@@ -886,6 +899,7 @@ Ext.define('DIRAC.TransformationMonitor.classes.TransformationMonitor', {
         var oColumns = [{
               text : 'LFN',
               flex : 1,
+              width : 60,
               sortable : false,
               dataIndex : oFields[0]
             }, {
