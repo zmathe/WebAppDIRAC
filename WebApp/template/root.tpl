@@ -10,7 +10,9 @@
 	  <script type="text/javascript" src="{{base_url}}/static/core/js/utils/canvg-1.3/StackBlur.js"></script>
 	  <script type="text/javascript" src="{{base_url}}/static/core/js/utils/canvg-1.3/canvg.js"></script>
 	  <script type="text/javascript" src="{{base_url}}/static/core/js/utils/FileSaver/FileSaver.js"></script>
-	  
+	  {% if bugReportURL!='' %}
+	  	<script type="text/javascript" src="{{bugReportURL}}"></script>
+	  {% end %}
     <link rel="stylesheet" type="text/css" href="{{base_url}}/static/extjs/{{ext_version}}/build/classic/theme-{{theme}}/resources/theme-{{theme}}-all.css" />
     <link rel="stylesheet" type="text/css" href="{{base_url}}/static/extjs/build/classic/theme-{{theme}}/resources/theme-{{theme}}-all.css" />
 
