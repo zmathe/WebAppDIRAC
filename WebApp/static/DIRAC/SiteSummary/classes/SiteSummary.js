@@ -149,7 +149,8 @@ Ext.define("DIRAC.SiteSummary.classes.SiteSummary", {
           "Name" : {
             "dataIndex" : "Name",
             "properties" : {
-              fixed: false
+              fixed: false,
+              autoS: true
             }
           },
           "CC" : {
@@ -295,7 +296,8 @@ Ext.define("DIRAC.SiteSummary.classes.SiteSummary", {
             });
         me.dataStore.on("load", function(st, recs, options){
           Ext.each(me.grid.columns,function(col){
-            col.autoSize();
+            if(col.autoS) 
+              col.autoSize();
           });
         });
         me.grid = Ext.create('Ext.dirac.utils.DiracGridPanel', {
