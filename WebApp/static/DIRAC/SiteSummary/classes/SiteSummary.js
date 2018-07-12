@@ -149,15 +149,17 @@ Ext.define("DIRAC.SiteSummary.classes.SiteSummary", {
           "Name" : {
             "dataIndex" : "Name",
             "properties" : {
-              fixed : true
+              fixed: false
             }
           },
-          "Country" : {
+          "CC" : {
             "dataIndex" : "Country",
             "properties" : {
               hideable : true,
               ortable : true,
-              align : 'left'
+              align : 'left',
+              fixed: true,
+              width: 60
             },
             renderer : function flag(code) {
               return '<img src="' + GLOBAL.BASE_URL + 'static/core/img/flags/' + code + '.gif">';
@@ -291,7 +293,11 @@ Ext.define("DIRAC.SiteSummary.classes.SiteSummary", {
               menu : menuitems,
               scope : me
             });
-
+        me.dataStore.on("load", function(st, recs, options){
+          Ext.each(me.grid.columns,function(col){
+            col.autoSize();
+          });
+        });
         me.grid = Ext.create('Ext.dirac.utils.DiracGridPanel', {
               store : me.dataStore,
               columnLines : true,
