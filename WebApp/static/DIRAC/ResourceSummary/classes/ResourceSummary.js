@@ -383,6 +383,7 @@ Ext.define("DIRAC.ResourceSummary.classes.ResourceSummary", {
                 rowNode.grid = me.grid.expandedGridPanel;
                 me.grid.expandedGridPanel.setLoading(true);
                 expandStore.load();
+                me.grid.expandedGridPanel.setLoading(false);
                 me.grid.expandedGridPanel.getEl().swallowEvent(['mouseover', 'mousedown', 'click', 'dblclick', 'onRowFocus']);
                 me.grid.expandedGridPanel.fireEvent("bind", me.grid.expandedGridPanel, {
                       id : record.get('Name')
