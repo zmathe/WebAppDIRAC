@@ -1,5 +1,5 @@
 Ext.define("DIRAC.ResourceSummary.classes.OverviewPanel", {
-      extend : "Ext.panel.Panel",
+      extend : "DIRAC.ResourceSummary.classes.MaximizablePanel",
       requires : ["DIRAC.ResourceSummary.classes.TreeModel"],
       title : 'Overview',
       region : 'east',
@@ -16,59 +16,7 @@ Ext.define("DIRAC.ResourceSummary.classes.OverviewPanel", {
       hidden : true,
       layout : "column",
       columnWidth : 2,
-      tools : [{
-            type : 'maximize',
-            tooltip : 'Maximize the application.',
-            handler : function(event, toolEl, panelHeader) {
-              var me = this;
-
-              var widget = me.up("panel");
-              var parent = me.up("panel").parentWidget;
-
-              parent.grid.hide();
-              parent.leftPanel.hide();
-
-              for (var i = 0; i < widget.tools.length; i++) {
-                if (widget.tools[i].type == 'maximize' || widget.tools[i].type == 'close' || widget.tools[i].type == "collapse-right") {
-                  widget.tools[i].hide();
-                } else if (widget.tools[i].type == 'minimize') {
-                  widget.tools[i].show();
-                }
-              }
-
-              widget.panelSize = {
-                height : widget.getHeight(),
-                width : widget.getWidth()
-              };
-
-              widget.setHeight(widget.maximizedSize.height);
-              widget.setWidth(widget.maximizedSize.width);
-            }
-          }, {
-            type : 'minimize',
-            tooltip : 'Minimize the application.',
-            hidden : true,
-            handler : function(event, toolEl, panelHeader) {
-              var me = this;
-
-              var parent = me.up("panel").parentWidget;
-              var widget = me.up("panel");
-
-              parent.grid.show();
-              parent.leftPanel.show();
-
-              for (var i = 0; i < widget.tools.length; i++) {
-                if (widget.tools[i].type == 'maximize' || widget.tools[i].type == 'close' || widget.tools[i].type == "collapse-right") {
-                  widget.tools[i].show();
-                } else if (widget.tools[i].type == 'minimize') {
-                  widget.tools[i].hide();
-                }
-              }
-
-              widget.setHeight(widget.panelSize.height);
-              widget.setWidth(widget.panelSize.width);
-            }
-          }],
+      //itt volt
       listeners : {
         collapse : function(panel, eOpts) {
           panel.hide();
@@ -113,12 +61,13 @@ Ext.define("DIRAC.ResourceSummary.classes.OverviewPanel", {
               autoHeight : true
             });
 
-        me.viewPanel = Ext.create("Ext.panel.Panel", {
+        me.viewPanel = Ext.create("DIRAC.ResourceSummary.classes.MaximizablePanel", {
               "title" : "Resource",
               columnWidth : 1 / 3,
               items : me.view,
               layout : 'fit',
-              resizable : true
+              resizable : true,
+              parentWidget : me
             });
         var historyStore = new Ext.data.ArrayStore({
               fields : ["Status", "DataEffectiv", "Reason"],
@@ -151,12 +100,13 @@ Ext.define("DIRAC.ResourceSummary.classes.OverviewPanel", {
                 enableTextSelection : true
               }
             })
-        me.historyPanel = Ext.create("Ext.panel.Panel", {
+        me.historyPanel = Ext.create("DIRAC.ResourceSummary.classes.MaximizablePanel", {
               title : "History",
               columnWidth : 1 / 3,
               items : [me.historyGrid],
               height : '50%',
-              resizable : true
+              resizable : true,
+              parentWidget : me
             });
 
         me.downtimeGrid = Ext.create("Ext.grid.Panel", {
@@ -206,12 +156,13 @@ Ext.define("DIRAC.ResourceSummary.classes.OverviewPanel", {
                 }
               }
             });
-        me.downTimePanel = Ext.create("Ext.panel.Panel", {
+        me.downTimePanel = Ext.create("DIRAC.ResourceSummary.classes.MaximizablePanel", {
               title : "Downtimes",
               columnWidth : 1 / 3,
               items : [me.downtimeGrid],
               height : '50%',
-              resizable : true
+              resizable : true,
+              parentWidget : me
 
             });
 
@@ -254,14 +205,15 @@ Ext.define("DIRAC.ResourceSummary.classes.OverviewPanel", {
               }
             });
 
-        me.policies = Ext.create("Ext.panel.Panel", {
+        me.policies = Ext.create("DIRAC.ResourceSummary.classes.MaximizablePanel", {
               title : "Policies",
               columnWidth : 1 / 3,
               items : [me.policiesGrid],
-              resizable : true
+              resizable : true,
+              parentWidget : me
             });
 
-        me.timeline = Ext.create("Ext.panel.Panel", {
+        me.timeline = Ext.create("DIRAC.ResourceSummary.classes.MaximizablePanel", {
               title : "Timeline",
               columnWidth : 1 / 3,
               height : 300,
@@ -270,12 +222,13 @@ Ext.define("DIRAC.ResourceSummary.classes.OverviewPanel", {
               items : [{
                     html : "<div id='" + me.id + "-timeline-plot' style='width:100%;'></div>",
                     xtype : "box"
-                  }]
+                  }],
+              parentWidget : me
 
             });
 
         me.treeStore = Ext.create('Ext.data.TreeStore', {
-
+          
               model : "DIRAC.ResourceSummary.classes.TreeModel",
               root : {
                 expanded : true,
