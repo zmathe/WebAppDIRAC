@@ -1,6 +1,3 @@
-function ki(w){
-    console.log(w.getTitle());
-}
 Ext.define("DIRAC.ResourceSummary.classes.MaximizablePanel", {
     extend : "Ext.panel.Panel",
     tools : [{
@@ -8,9 +5,11 @@ Ext.define("DIRAC.ResourceSummary.classes.MaximizablePanel", {
           tooltip : 'Maximize the application.',
           handler : function(event, toolEl, panelHeader) {
             var me = this;
-
+          
             var widget = me.up("panel");
             var parent = me.up("panel").parentWidget;
+            parent.suspendLayout = true;
+
             for (var i = 0; i < widget.tools.length; i++) {
               if (widget.tools[i].type == 'maximize' || widget.tools[i].type == 'close' || widget.tools[i].type == "collapse-right") {
                 widget.tools[i].hide();
@@ -19,7 +18,7 @@ Ext.define("DIRAC.ResourceSummary.classes.MaximizablePanel", {
               }
             }
             
-            parent.suspendLayout = true;
+            
             
             widget.savedWidth = widget.getWidth();
             widget.savedHeight = widget.getHeight();
@@ -27,14 +26,12 @@ Ext.define("DIRAC.ResourceSummary.classes.MaximizablePanel", {
             widget.setWidth(parent.getWidth()-3);
             widget.setHeight(parent.getHeight()-3);
             widget.columnWidth = undefined;
-            
-            //widget.setHeight(widget.maximizedSize.height);
-            //widget.setWidth(widget.maximizedSize.width);
             parent.items.each(function(sibling){
                 if(sibling != widget){
                     sibling.hide();
                 }
             });
+
             parent.suspendLayout = false;
             parent.updateLayout();
           }
@@ -47,7 +44,7 @@ Ext.define("DIRAC.ResourceSummary.classes.MaximizablePanel", {
 
             var parent = me.up("panel").parentWidget;
             var widget = me.up("panel");
-
+            parent.suspendLayout = true;
 
             for (var i = 0; i < widget.tools.length; i++) {
               if (widget.tools[i].type == 'maximize' || widget.tools[i].type == 'close' || widget.tools[i].type == "collapse-right") {
@@ -57,7 +54,7 @@ Ext.define("DIRAC.ResourceSummary.classes.MaximizablePanel", {
               }
             }
             
-            parent.suspendLayout = true;
+            
             parent.items.each(function(sibling){
                 if(sibling != widget){
                     sibling.show();
@@ -66,11 +63,9 @@ Ext.define("DIRAC.ResourceSummary.classes.MaximizablePanel", {
             widget.columnWidth = widget.savedColumnWidth;
             widget.setWidth(widget.savedWidth);
             widget.setHeight(widget.savedHeight);
+
             parent.suspendLayout = false;
             parent.updateLayout();
-            //widget.setHeight(widget.height);
-            //console.log(widget.savedWidth);
-            //widget.setWidth(widget.savedWidth);
           }
         }]
   });
